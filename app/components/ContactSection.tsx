@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { Button, CircularProgress } from '@mui/material'
+import { Snackbar, Alert } from '@mui/material'
 
 const ContactSection = () => {
   const [formState, setFormState] = useState({
@@ -10,6 +11,10 @@ const ContactSection = () => {
     message: '',
   })
   const [isLoading, setIsLoading] = useState(false)
+
+  const [open, setOpen] = useState(false)
+  const [message, setMessage] = useState('')
+  const [severity, setSeverity] = useState<'success' | 'error'>('success')
 
   async function handleSubmit(event: any) {
     event.preventDefault()
@@ -28,13 +33,23 @@ const ContactSection = () => {
     })
 
     const data = await response.json()
-
     if (response.ok) {
       setIsLoading(false)
+      setFormState({
+        name: '',
+        email: '',
+        message: '',
+      })
+      setSnackbarValue(`Mail sent succesfully!`, 'success')
     } else {
       setIsLoading(false)
-      alert(`Failed to send email 123: ${data.message}`)
+      setSnackbarValue(`Failed to send email: ${data.message}`, 'error')
     }
+  }
+  const setSnackbarValue = (message: string, severity: 'success' | 'error') => {
+    setMessage(message)
+    setSeverity(severity)
+    setOpen(true)
   }
 
   return (
@@ -83,6 +98,7 @@ const ContactSection = () => {
           name="name"
           type="text"
           placeholder="Your Name"
+          value={formState.name}
           style={{
             padding: '10px',
             width: '100%',
@@ -91,11 +107,13 @@ const ContactSection = () => {
             boxSizing: 'border-box',
           }}
           onChange={(e) => setFormState({ ...formState, name: e.target.value })}
+          required
         />
         <input
           name="email"
           type="email"
           placeholder="Your Email"
+          value={formState.email}
           style={{
             padding: '10px',
             width: '100%',
@@ -106,6 +124,7 @@ const ContactSection = () => {
           onChange={(e) =>
             setFormState({ ...formState, email: e.target.value })
           }
+          required
         />
         <textarea
           name="message"
@@ -119,9 +138,11 @@ const ContactSection = () => {
             boxSizing: 'border-box',
             resize: 'none',
           }}
+          value={formState.message}
           onChange={(e) =>
             setFormState({ ...formState, message: e.target.value })
           }
+          required
         />
         <Button
           type="submit"
@@ -150,6 +171,23 @@ const ContactSection = () => {
           )}
         </Button>
       </form>
+      <Snackbar
+        open={open}
+        autoHideDuration={3000}
+        onClose={() => setOpen(false)}
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+      >
+        <Alert
+          onClose={() => setOpen(false)}
+          severity={severity}
+          sx={{ width: '100%' }}
+        >
+          {message}
+        </Alert>
+      </Snackbar>
     </section>
   )
 }
