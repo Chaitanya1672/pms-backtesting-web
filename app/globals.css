@@ -30,6 +30,7 @@ body {
   width: 80%;
   margin: auto;
 }
+
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -60,4 +61,13 @@ button {
 
 button:hover {
   background-color: #005bb5;
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    display: none !important; /* Hide desktop links on mobile */
+  }
+  .hamburger-menu {
+    display: block !important; /* Show hamburger menu on mobile */
+  }
 }

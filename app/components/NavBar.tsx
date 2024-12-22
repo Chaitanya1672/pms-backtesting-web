@@ -16,6 +16,7 @@ const Navbar = () => {
         backgroundColor: '#0070f3fc',
         color: 'white',
         borderRadius: '10px 10px 0 0',
+        position: 'relative', // For dropdown positioning
       }}
     >
       {/* Logo */}
@@ -31,7 +32,13 @@ const Navbar = () => {
       </div>
 
       {/* Navigation Links (Desktop) */}
-      <div style={{ display: 'flex', gap: '20px' }} className="nav-links">
+      <div
+        style={{
+          display: 'flex',
+          gap: '20px',
+        }}
+        className="nav-links"
+      >
         <Link
           href="#hero-section"
           style={{ color: 'white', textDecoration: 'none' }}
@@ -60,7 +67,11 @@ const Navbar = () => {
 
       {/* Hamburger Menu for Mobile */}
       <div
-        style={{ display: 'none', cursor: 'pointer' }}
+        style={{
+          display: 'none',
+          cursor: 'pointer',
+          fontSize: '1.5rem',
+        }}
         className="hamburger-menu"
         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
       >
@@ -78,25 +89,48 @@ const Navbar = () => {
             border: '1px solid #005bb5',
             borderRadius: '8px',
             padding: '10px',
+            zIndex: 1000,
           }}
         >
           <Link
-            href="/"
-            style={{ display: 'block', color: 'white', marginBottom: '10px' }}
+            href="#hero-section"
+            style={{
+              display: 'block',
+              color: 'white',
+              marginBottom: '10px',
+              textDecoration: 'none',
+            }}
             onClick={() => setIsMobileMenuOpen(false)}
           >
             Home
           </Link>
           <Link
-            href="/services"
-            style={{ display: 'block', color: 'white', marginBottom: '10px' }}
+            href="#services-section"
+            style={{
+              display: 'block',
+              color: 'white',
+              marginBottom: '10px',
+              textDecoration: 'none',
+            }}
             onClick={() => setIsMobileMenuOpen(false)}
           >
             Services
           </Link>
           <Link
-            href="/contact"
-            style={{ display: 'block', color: 'white' }}
+            href="#choose-us-section"
+            style={{
+              display: 'block',
+              color: 'white',
+              marginBottom: '10px',
+              textDecoration: 'none',
+            }}
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            Choose Us
+          </Link>
+          <Link
+            href="#contact-section"
+            style={{ display: 'block', color: 'white', textDecoration: 'none' }}
             onClick={() => setIsMobileMenuOpen(false)}
           >
             Contact Us
