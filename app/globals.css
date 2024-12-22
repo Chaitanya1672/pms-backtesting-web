@@ -65,9 +65,20 @@ button:hover {
 
 @media (max-width: 768px) {
   .nav-links {
-    display: none !important; /* Hide desktop links on mobile */
+    display: none !important;
   }
   .hamburger-menu {
-    display: block !important; /* Show hamburger menu on mobile */
+    display: block !important;
+  }
+  .main-container {
+    width: 100%;
+  }
+  .hero-section {
+    width: 95% !important;
+    margin: auto !important;
+    margin-top: 1rem !important;
+  }
+  .content-container {
+    padding: 20px 10px !important;
   }
 }

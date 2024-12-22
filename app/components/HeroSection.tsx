@@ -11,6 +11,7 @@ const HeroSection = () => {
         borderRadius: '1rem',
         overflow: 'hidden', // Ensures the overlay stays within border radius
       }}
+      className="hero-section"
     >
       {/* Dark overlay */}
       <div
@@ -53,6 +54,7 @@ const HeroSection = () => {
           justifyContent: 'center',
           alignItems: 'center',
         }}
+        className="content-container"
       >
         <h1
           style={{
