@@ -54,7 +54,7 @@ const Footer = () => {
         </a>
       </div>
       <p style={{ fontSize: '0.9rem', marginBottom: '0' }}>
-        &copy; {new Date().getFullYear()} BackTestify. All rights reserved.
+        &copy; {new Date().getFullYear()} EdgeTest. All rights reserved.
       </p>
     </footer>
   )

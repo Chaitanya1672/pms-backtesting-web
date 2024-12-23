@@ -19,7 +19,7 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: 'Backtesting Services',
-  description: 'Created by Chaitanya',
+  description: 'Created by EdgeTest Team',
 }
 
 export default function RootLayout({

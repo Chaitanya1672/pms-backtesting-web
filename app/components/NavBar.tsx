@@ -26,7 +26,7 @@ const Navbar = () => {
             href="#hero-section"
             style={{ color: 'white', textDecoration: 'none' }}
           >
-            BackTestify
+            EdgeTest
           </Link>
         </h1>
       </div>
