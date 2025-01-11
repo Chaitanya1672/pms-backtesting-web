@@ -1,8 +1,14 @@
 'use client'
 
 import { useState } from 'react'
-import { Button, CircularProgress } from '@mui/material'
-import { Snackbar, Alert } from '@mui/material'
+import {
+  Button,
+  CircularProgress,
+  Snackbar,
+  Alert,
+  TextField,
+} from '@mui/material'
+import styles from '../styles/ContactSection.module.css'
 
 const ContactSection = () => {
   const [formState, setFormState] = useState({
@@ -25,27 +31,19 @@ const ContactSection = () => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        name: name,
-        email: email,
-        message: message,
-      }),
+      body: JSON.stringify({ name, email, message }),
     })
 
     const data = await response.json()
+    setIsLoading(false)
     if (response.ok) {
-      setIsLoading(false)
-      setFormState({
-        name: '',
-        email: '',
-        message: '',
-      })
-      setSnackbarValue(`Mail sent succesfully!`, 'success')
+      setFormState({ name: '', email: '', message: '' })
+      setSnackbarValue('Mail sent successfully!', 'success')
     } else {
-      setIsLoading(false)
       setSnackbarValue(`Failed to send email: ${data.message}`, 'error')
     }
   }
+
   const setSnackbarValue = (message: string, severity: 'success' | 'error') => {
     setMessage(message)
     setSeverity(severity)
@@ -53,116 +51,62 @@ const ContactSection = () => {
   }
 
   return (
-    <section
-      id="contact-section"
-      style={{
-        margin: '60px auto',
-        maxWidth: '500px',
-        padding: '30px',
-        borderRadius: '8px',
-        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-        backgroundColor: '#fff',
-      }}
-    >
-      <h2
-        style={{
-          textAlign: 'center',
-          fontSize: '1.8rem',
-          marginBottom: '20px',
-          color: '#333',
-        }}
-      >
-        Contact Us
-      </h2>
-      <p
-        style={{
-          textAlign: 'center',
-          fontSize: '1rem',
-          lineHeight: '1.6',
-          marginBottom: '30px',
-          color: '#555',
-        }}
-      >
+    <section id="contact-section" className={styles.contactSection}>
+      <h2 className={styles.sectionTitle}>Contact Us</h2>
+      <p className={styles.sectionDescription}>
         Feel free to reach out for inquiries or support.
       </p>
-      <form
-        onSubmit={handleSubmit}
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          gap: '15px',
-        }}
-      >
-        <input
+      <form onSubmit={handleSubmit} className={styles.contactForm}>
+        <TextField
           name="name"
           type="text"
-          placeholder="Your Name"
+          label="Your Name"
+          variant="outlined"
+          fullWidth
           value={formState.name}
-          style={{
-            padding: '10px',
-            width: '100%',
-            borderRadius: '4px',
-            border: '1px solid #ccc',
-            boxSizing: 'border-box',
-          }}
           onChange={(e) => setFormState({ ...formState, name: e.target.value })}
           required
+          placeholder="eg. John Doe"
         />
-        <input
+        <TextField
           name="email"
           type="email"
-          placeholder="Your Email"
+          label="Your Email"
+          variant="outlined"
+          fullWidth
           value={formState.email}
-          style={{
-            padding: '10px',
-            width: '100%',
-            borderRadius: '4px',
-            border: '1px solid #ccc',
-            boxSizing: 'border-box',
-          }}
           onChange={(e) =>
             setFormState({ ...formState, email: e.target.value })
           }
           required
+          placeholder="eg. johndoe@example.com"
         />
-        <textarea
+        <TextField
           name="message"
-          placeholder="Your Message"
-          style={{
-            padding: '10px',
-            width: '100%',
-            height: '120px',
-            borderRadius: '4px',
-            border: '1px solid #ccc',
-            boxSizing: 'border-box',
-            resize: 'none',
-          }}
+          label="Your Message"
+          variant="outlined"
+          fullWidth
+          multiline
+          rows={4}
           value={formState.message}
           onChange={(e) =>
             setFormState({ ...formState, message: e.target.value })
           }
           required
+          placeholder="eg. Hello, I have a question about your service."
         />
         <Button
           type="submit"
           variant="contained"
           disabled={isLoading}
-          sx={{
-            bgcolor: '#0070f3',
-            '&:hover': {
-              bgcolor: '#005bb5',
-            },
-            fontSize: '1rem',
-            padding: '10px 20px',
-          }}
+          className={styles.submitButton}
         >
           {isLoading ? (
             <>
               <CircularProgress
                 size={20}
                 color="inherit"
-                sx={{ marginRight: '8px' }}
+                className={styles.spinner}
               />
               Sending...
             </>
@@ -175,15 +119,12 @@ const ContactSection = () => {
         open={open}
         autoHideDuration={3000}
         onClose={() => setOpen(false)}
-        anchorOrigin={{
-          vertical: 'top',
-          horizontal: 'right',
-        }}
+        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
       >
         <Alert
           onClose={() => setOpen(false)}
           severity={severity}
-          sx={{ width: '100%' }}
+          className={styles.snackbarAlert}
         >
           {message}
         </Alert>

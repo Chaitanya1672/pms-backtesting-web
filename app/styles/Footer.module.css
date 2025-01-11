@@ -1,0 +1,28 @@
+.footer {
+  background-color: #0070f3;
+  color: #fff;
+  padding: 20px 0;
+  text-align: center;
+  margin-top: 40px;
+  border-radius: 0 0 10px 10px;
+}
+
+.socialLinks {
+  margin-bottom: 10px;
+}
+
+.socialLink {
+  color: #fff;
+  margin: 0 10px;
+  text-decoration: none;
+  font-size: 1.2rem;
+}
+
+.socialLink:hover {
+  text-decoration: underline;
+}
+
+.copyright {
+  font-size: 0.9rem;
+  margin-bottom: 0;
+}

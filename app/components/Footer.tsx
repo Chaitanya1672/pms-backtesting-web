@@ -1,28 +1,15 @@
 import React from 'react'
+import styles from '../styles/Footer.module.css'
 
 const Footer = () => {
   return (
-    <footer
-      style={{
-        backgroundColor: '#0070f3',
-        color: '#fff',
-        padding: '20px 0',
-        textAlign: 'center',
-        marginTop: '40px',
-        borderRadius: '0 0 10px 10px',
-      }}
-    >
-      <div style={{ marginBottom: '10px' }}>
+    <footer className={styles.footer}>
+      <div className={styles.socialLinks}>
         <a
           href="https://www.facebook.com"
           target="_blank"
           rel="noopener noreferrer"
-          style={{
-            color: '#fff',
-            margin: '0 10px',
-            textDecoration: 'none',
-            fontSize: '1.2rem',
-          }}
+          className={styles.socialLink}
         >
           Facebook
         </a>
@@ -30,12 +17,7 @@ const Footer = () => {
           href="https://www.twitter.com"
           target="_blank"
           rel="noopener noreferrer"
-          style={{
-            color: '#fff',
-            margin: '0 10px',
-            textDecoration: 'none',
-            fontSize: '1.2rem',
-          }}
+          className={styles.socialLink}
         >
           Twitter
         </a>
@@ -43,17 +25,12 @@ const Footer = () => {
           href="https://www.linkedin.com"
           target="_blank"
           rel="noopener noreferrer"
-          style={{
-            color: '#fff',
-            margin: '0 10px',
-            textDecoration: 'none',
-            fontSize: '1.2rem',
-          }}
+          className={styles.socialLink}
         >
           LinkedIn
         </a>
       </div>
-      <p style={{ fontSize: '0.9rem', marginBottom: '0' }}>
+      <p className={styles.copyright}>
         &copy; {new Date().getFullYear()} EdgeTest. All rights reserved.
       </p>
     </footer>

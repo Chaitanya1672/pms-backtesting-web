@@ -1,31 +1,11 @@
-import React from 'react'
+import styles from '../styles/ChooseUsSection.module.css'
 
-const ChooseUsSection = () => {
+export default function ChooseUsSection() {
   return (
-    <section id="choose-us-section" style={{ padding: '0' }}>
-      <div
-        style={{
-          padding: '60px 20px',
-          backgroundColor: '#f1f1f1',
-          margin: 'auto',
-        }}
-      >
-        <h2
-          style={{
-            textAlign: 'center',
-            fontSize: '2rem',
-            marginBottom: '40px',
-          }}
-        >
-          Why Choose Us?
-        </h2>
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-            gap: '20px',
-          }}
-        >
+    <section id="choose-us-section" className={styles.section}>
+      <div className={styles.container}>
+        <h2 className={styles.title}>Why Choose Us?</h2>
+        <div className={styles.grid}>
           <div>
             <h3>Precision-Driven Analysis</h3>
             <p>
@@ -52,5 +32,3 @@ const ChooseUsSection = () => {
     </section>
   )
 }
-
-export default ChooseUsSection
